@@ -36,7 +36,7 @@ Testing each unit,component.
 -Maven Repository provides you spring dependency(Jar file),Hibernate dependency.
 -While  you create project you have to specify in POM file which dependencies you need.
 Groupid: com.telusko
-Artifactid: demo  (project name.)
+Artifactid: demo  (project name. )
 Package name: com.telusko.demo.web
 
 -First when you search some dependency in Java you first serch in your local repository 
