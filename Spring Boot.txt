@@ -1,0 +1,170 @@
+admin@1123
+
+Spring
+- very popular framework for building Java Applications.
+- Intially a simpler and lightweight alternative to J2EE.
+- provide larger number of helper classes which makes development easier.
+
+Why Spring?
+--J2E
+-EJB(Enterprise java beans) are very complex and works very slow.
+-Spring is Simplified Java Enterprise Development.
+-It initially contains servlets and JSPs.
+
+What to lean 
+-spring
+-Java EE.
+ans: Both lot of skills are interchangable.  once you learn how to implement MVC in one framework implemting in other framework is easier  
+
+
+Update on Spring5 (2017)
+-minimum req is Java 8.
+-Depricated legacy integration for Tiles,velocity,Portlet,etc.
+-Upgraded Spring MVC 
+-Added programming frame work : spring web flux.
+-Some spring 5 Specific feature will not work on Spring4. i.e Spring5 webflux.
+
+--------------------------------------------------------------------------------------------
+www.spring.io //official website.
+
+Goals of Springs
+-light weight devlopmment with java POJOS (plain old Java objects).
+-Dependency injection to promote loose coupling.
+-Declarative programming with AOP.(Add application wide services to your application. Transaction)
+-Minimum boilerpalte Java Code(Helper Classes)
+
+Spring Core FrameWork.
+Beans:
+core:Factory for creating beans,Manage dependecies. 
+Spel  : spring expression language.
+Context:
+
+AOP:Aspectv oriented programming login ,security,transaction.Add config to apply service.
+
+DataAcess Section:
+-JDBC Helper class Reduce your JDBC code by 50%.
+-ORM : object relational mapping. Integration with JPA and Hibernate.
+-Transcation: Transcaction manager   methods are avaliable.
+-OXM
+-JMS :Java message service..... provides helper class 
+
+weblayer
+Servlet,websocket,web,portlet.
+
+Infrastructure
+-instrumentation(agents to monitor)
+
+test layer
+-Unit
+-Integration
+-Mock.
+
+--------------------------------------------------------------------------------------------
+Spring Projects.
+-Additional Spring modules built-on the top of the core Spring Framework.
+-Only use what u need.
+-Spring Cloud,Spring Data,Spring Batch , Spring Security,Spring for Android,spring web services,spring LDPA
+-Spring Boot,spring Social.
+
+Setting up your Development environment
+-JDK Installed
+Java App server (Tomcat server),   Java IDE
+
+Connecting Eclipse and Tomcat.
+Benifits
+-Start Tomcat from Eclipse.
+-Easily deploy applications to Tomcat.
+
+- Download Spring Jar files.
+
+To Do List
+1.Create Eclipse project.
+2.Download Spring Jar Files
+3. Add Jar files to Eclipse Project...Build path.
+
+Maven: End of course'
+https://repo.spring.io/release/org/springframework/spring/5.2.7.RELEASE/
+right click on project -> buld class path ->  add Jara -> add all jars copppied in lib folder
+--------------------------------------------------------------------------------------------
+
+----Spring Inversion of Control(IOC)
+-creation and mamagement of Object.
+-Outsource to an object factory.
+-  my App  ------ Give me Daily Work out-----> Baseball coach
+	   <-----------------------------------
+
+-Project is configrable and should be able to work with any type of coach.
+code Demo
+-MyApp.java : main method.
+-BaseballCoach.java
+-Coach.java : interface after v vrefactoring
+-TrackCoach.java
+//hardcoded and not configure using Object Factory for configration.
+
+give me the object based on configrable file, so the app is configrable.
+---Spring Container
+--Primary Functions
+-create and manage object(Inversion of control)
+-Inject object dependency (Dependency Injection)
+
+3ways of configration
+-XML
+-Java Annotations(morder).
+-Java Source Code.
+
+Spring Development process.
+1.Configure your Spring Beans
+2.Create a spring Container(Application Context).
+3.Retrive Beans from Spring Container.
+
+
+------------------------- Spring Boot By Navin Reddy -----------------------------
+
+-Java EE: EJB(Enterprise Java Beans) difficult to manage them and  Entity are very heavy.
+-Spring  : Smae can be implemented using POJOS.
+
+-There are various frame works are available they can be integrated with Sturds and hibernate.
+
+---Spring Boot
+-Developer    ->>>>>>     SpringBoot(help developer giving dependency and configration)   ->>>>>     Spring(frame work)
+helps us to focus more on coding rather than Configration using SpringBoot
+all the basic configration will be done by spring boot.you can add you basic configration for additional functionality.
+
+-Webserver Tomcat installing seperate when only spring used ....
+-Spring boot provides you an embeded server.
+-you will have tomcat inside you jar file embeded server than you can run your project on any JVM.
+-starter projects: spring-boot-starter-web, spring-boot-starter-web
+-spring boot auto configration.
+-application.properties files helps you to modify configration.
+
+--Dependency Injection:
+losse coupling : one object should not be totally dependent on another object. you can replace the objects.
+class Laptop
+{
+  HardDrive obj1= new HitaciHD();  // hard coded i.e Tight coupling.	
+}
+creating Interface is having commom methods.IOC:Inversion of control,but here it is hard-coded .
+Laptop is dependent on harddrive . so service can inject dependency of harddrive into laptop.
+-Dependency injection container.
+
+In spring you can use XML.
+So now how you will come to know which is dependent on Which.
+Considering example of laptop and hitachiHD you have to write 
+
+
+@Component on top of HitachiHD So when oject is needed can be fetched
+//Component can be generated as per our requirement
+class Laptop
+{
+  //Losse coupling
+  @Autowired  // So one is asking for HardDrive
+  HardDrive obj1= new HitaciHD();  // hard coded i.e Tight coupling.	
+}
+Testing each unit,component.
+-Mock Object is used when only there is loose coupling. You can test dependent class without inner class object.
+
+
+
+
+
+ 

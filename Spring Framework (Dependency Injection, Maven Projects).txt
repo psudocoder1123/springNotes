@@ -1,0 +1,166 @@
+Add Dependencies in POM file using MavenRepository.com 
+****************Dependency Injection*****************************
+
+
+
+1.Spring Dependency Injection:
+
+losse coupling : one object should not be totally dependent on another object. you can replace the objects.
+class Laptop
+{
+  HardDrive obj1= new HitaciHD();  // hard coded i.e Tight coupling.	
+}
+creating Interface is having commom methods.IOC:Inversion of control,but here it is hard-coded .
+Laptop is dependent on harddrive . so service can inject dependency of harddrive into laptop.
+-Dependency injection container.
+
+In spring you can use XML.
+So now how you will come to know which is dependent on Which.
+Considering example of laptop and hitachiHD you have to write 
+
+
+@Component on top of HitachiHD So when oject is needed can be fetched
+//Component can be generated as per our requirement
+class Laptop
+{
+  //Losse coupling
+  @Autowired  // So one is asking for HardDrive
+  HardDrive obj1= new HitaciHD();  // hard coded i.e Tight coupling.	
+}
+Testing each unit,component.
+-Mock Object is used when only there is loose coupling. You can test dependent class without inner class object.
+
+2.Introduction to Maven:
+-If you are working with Spring there are various dependencies.
+-You can download the dependency.
+-Maven Repository provides you spring dependency(Jar file),Hibernate dependency.
+-While  you create project you have to specify in POM file which dependencies you need.
+Groupid: com.telusko
+Artifactid: demo  (project name.)
+Package name: com.telusko.demo.web
+
+-First when you search some dependency in Java you first serch in your local repository 
+if its not present in local repository you connect to internet and search remote repository.
+-Once it is fetched from remote repository it is stored in local  repository.
+Gradel can also be used instead of Maven
+
+3.Maven Practical.
+-You can download all the libraries from spring.io
+-But when version is changed you have to individually update libraries of different spring framework.
+-arch type dependency to add dependency.
+//You get project structure along with all the dependency
+-you can add spring framework dependency in pom.xml
+
+4.Spring Core Framework Tutorial.
+//book from spring.io
+
+5.Application Context.
+when you are building small application you should go for bean factory.
+When you build big enterprise level application you use ApplicationContext.
+-Application context is an interface So you ClassPathXmlApplicationContext() to implement class.
+
+        ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+        Vehicle v= (Vehicle)context.getBean("vehicle");
+        v.drive();
+    
+<bean id="vehicle" class="com.tanishq.telusko.bike">
+
+Now you are changing in XMl files and not in java files so there is no need of recompling the java files.
+---3 Ways of confugration:
+1.XMl configration.
+2.Anotatio based Configration
+xml file
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+   xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context = "http://www.springframework.org/schema/context"
+   xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+<context:component-scan base-package = "com.tanishq.telusko"></context:component-scan>
+  
+</beans>
+3.Java Configration
+
+
+6.Bean Property.
+You can add property tag Inside Bean
+-you can use <property name and value to remove field dependency> 
+
+7.Constructor Injection:
+<constructor-arg value="MRF"></constructor-arg>
+
+8.Auto-Wired Annotation.(Anotation based configration).
+-you can use both xml based config and anootations based config Combine.
+For class car tyre(object of other class) is a property So you have to again use property tag in XML.
+-Instead Use @Auto Wired in Class car above of object creation.
+-and @Component above class Tyre.
+
+9.Configration Bean:Specifically for Anotations.
+-In Xml you use class ClassPathXml and specify Configration xml file name(spring.xml).
+-In AnnotationConfigration you can use class AnnotationConfigApplicationContext() 
+-In order to use anotation based config you have to create a class who will provide you annotation.
+- Creating class AppConfig and wirting annotation on top of it @Configration.
+-------------------------------------------------------------
+@Configuration
+public class AppConfig {
+
+	@Bean  //this method will return Bean
+	public Samsung getPhone()
+	{
+		return new Samsung();
+	}
+}
+-------------------------------------------------------------
+-Commenting Path in App.config.
+
+10. Annotation Component AutoWired Primary Qualifier
+-Create Beans without using bean Tag.
+-Every Class you require object of .....write @Component. 
+
+for class Samsung @Component is by default trated as@Component("samsung") 
+-------------------------------------------------------------
+File:AppConfig.java
+-------------------------------------------------------------
+package com.tanishq.SpringAnno;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+@Configuration  //Configration file
+@ComponentScan(basePackages = "com.tanishq.SpringAnno")  // find all the classes inside this package and Automatically generate beans for Component.
+public class AppConfig {
+	
+}
+
+-------------------------------------------------------------
+Implementing 2 Classes for Processor 
+MediaTek, and Snapdragon
+we have not specified which class is to be used and there is confusion
+
+@Primary // Specifies if there is Confusion Use This Class.
+- If you dont want to use Primary You wanto specify Which class is to be used you can use @Qualifier to specify the name.
+
+
+public class Samsung 
+{
+	@Autowired
+	@Qualifier("mediaTek")  //this will refer obj of mediaTek
+	MobileProcessor cpu;
+	
+	public MobileProcessor getCpu() {
+		return cpu;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+ 
