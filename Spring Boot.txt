@@ -1,139 +1,25 @@
-admin@1123
 
-Spring
-- very popular framework for building Java Applications.
-- Intially a simpler and lightweight alternative to J2EE.
-- provide larger number of helper classes which makes development easier.
-
-Why Spring?
---J2E
--EJB(Enterprise java beans) are very complex and works very slow.
--Spring is Simplified Java Enterprise Development.
--It initially contains servlets and JSPs.
-
-What to lean 
--spring
--Java EE.
-ans: Both lot of skills are interchangable.  once you learn how to implement MVC in one framework implemting in other framework is easier  
-
-
-Update on Spring5 (2017)
--minimum req is Java 8.
--Depricated legacy integration for Tiles,velocity,Portlet,etc.
--Upgraded Spring MVC 
--Added programming frame work : spring web flux.
--Some spring 5 Specific feature will not work on Spring4. i.e Spring5 webflux.
-
---------------------------------------------------------------------------------------------
-www.spring.io //official website.
-
-Goals of Springs
--light weight devlopmment with java POJOS (plain old Java objects).
--Dependency injection to promote loose coupling.
--Declarative programming with AOP.(Add application wide services to your application. Transaction)
--Minimum boilerpalte Java Code(Helper Classes)
-
-Spring Core FrameWork.
-Beans:
-core:Factory for creating beans,Manage dependecies. 
-Spel  : spring expression language.
-Context:
-
-AOP:Aspectv oriented programming login ,security,transaction.Add config to apply service.
-
-DataAcess Section:
--JDBC Helper class Reduce your JDBC code by 50%.
--ORM : object relational mapping. Integration with JPA and Hibernate.
--Transcation: Transcaction manager   methods are avaliable.
--OXM
--JMS :Java message service..... provides helper class 
-
-weblayer
-Servlet,websocket,web,portlet.
-
-Infrastructure
--instrumentation(agents to monitor)
-
-test layer
--Unit
--Integration
--Mock.
-
---------------------------------------------------------------------------------------------
-Spring Projects.
--Additional Spring modules built-on the top of the core Spring Framework.
--Only use what u need.
--Spring Cloud,Spring Data,Spring Batch , Spring Security,Spring for Android,spring web services,spring LDPA
--Spring Boot,spring Social.
-
-Setting up your Development environment
--JDK Installed
-Java App server (Tomcat server),   Java IDE
-
-Connecting Eclipse and Tomcat.
-Benifits
--Start Tomcat from Eclipse.
--Easily deploy applications to Tomcat.
-
-- Download Spring Jar files.
-
-To Do List
-1.Create Eclipse project.
-2.Download Spring Jar Files
-3. Add Jar files to Eclipse Project...Build path.
-
-Maven: End of course'
-https://repo.spring.io/release/org/springframework/spring/5.2.7.RELEASE/
-right click on project -> buld class path ->  add Jara -> add all jars copppied in lib folder
---------------------------------------------------------------------------------------------
-
-----Spring Inversion of Control(IOC)
--creation and mamagement of Object.
--Outsource to an object factory.
--  my App  ------ Give me Daily Work out-----> Baseball coach
-	   <-----------------------------------
-
--Project is configrable and should be able to work with any type of coach.
-code Demo
--MyApp.java : main method.
--BaseballCoach.java
--Coach.java : interface after v vrefactoring
--TrackCoach.java
-//hardcoded and not configure using Object Factory for configration.
-
-give me the object based on configrable file, so the app is configrable.
----Spring Container
---Primary Functions
--create and manage object(Inversion of control)
--Inject object dependency (Dependency Injection)
-
-3ways of configration
--XML
--Java Annotations(morder).
--Java Source Code.
-
-Spring Development process.
-1.Configure your Spring Beans
-2.Create a spring Container(Application Context).
-3.Retrive Beans from Spring Container.
 
 
 ------------------------- Spring Boot By Navin Reddy -----------------------------
 
+-----Theory-----
+
 -Java EE: EJB(Enterprise Java Beans) difficult to manage them and  Entity are very heavy.
--Spring  : Smae can be implemented using POJOS.
+-Spring  : Same can be implemented using POJOS(plain Old Java Objects).
 
 -There are various frame works are available they can be integrated with Sturds and hibernate.
 
 ---Spring Boot
 -Developer    ->>>>>>     SpringBoot(help developer giving dependency and configration)   ->>>>>     Spring(frame work)
+
 helps us to focus more on coding rather than Configration using SpringBoot
 all the basic configration will be done by spring boot.you can add you basic configration for additional functionality.
 
 -Webserver Tomcat installing seperate when only spring used ....
 -Spring boot provides you an embeded server.
 -you will have tomcat inside you jar file embeded server than you can run your project on any JVM.
--starter projects: spring-boot-starter-web, spring-boot-starter-web
+-starter projects: spring-boot-starter-web, spring-boot-starter-Android
 -spring boot auto configration.
 -application.properties files helps you to modify configration.
 
@@ -164,7 +50,256 @@ Testing each unit,component.
 -Mock Object is used when only there is loose coupling. You can test dependent class without inner class object.
 
 
+------------------------------------------------------------------------------------------------------
+1.spring IDE: STS.
+
+In Sts  you can directly create spring starter project you will not get this in Ecllipse.
+You dont have to do much configration it support auto configration.
+- If you want to use Spring Boot in Ecllipse you can use Spring Initializer and Generate Project and open that in Ecllipse.
+
+2.Spring Dependency Injection and Autowiring.
+-JVM has Special Contanier that have different objects called Spring Beans.
+-Object are called as Spring Beans two scopes 1.Singleton 2.Prototype.
+-When you will run spring application it will create that objects in the container wich classes on top are specified with @ component.
+------------------------------------------------------------------
+@Component //this is a class of which I need object in container
+public class Alien {
+	private int aid;
+	private String aname;
+	private String tech;
+	
+	public void show()
+	{
+		System.out.println("InShow");
+	}
+------------------------------------------------------------------
+-Spring follows the concept of Singleton design pattern.
+-It will give you object prehand you dont have to wait for object creation. the moment you run Spring Application it will give you the object.
+------------------------------------------------------------------
+		Alien a = context.getBean(Alien.class); //spring Frame work is injecting this object in your application.
+		a.show();
+		
+		Alien a1 = context.getBean(Alien.class); //spring Frame work is injecting this object in your application.
+		a1.show();
+	//Here object is created only once and same object is used , because it uses concept of single ton design pattern.
+------------------------------------------------------------------
+@Component //this is a class of which I need object in container
+@Scope(value = "prototype")  //Create obj when getbean is called.
+
+This time it will not create object pre-hand, rather it will create object when getBean is called.
+considering the same above code 2 Objects will be created.
+----
+-Every Alien uses laptop. //Hence Alien is dependent on laptop 
+mentioning @Component on top of laptop
+@Component on top of laptop will create obj prehand  of class laptop in container
+
+mentioning @Autowired before creating Laptop obj in Alien class  will tell alien that laptop obj is created in container.
+connecting two.
+
+-----
+@Component("laptop") //by def laptop you can change it
+
+@Autowired     if only @Autowire is used it by default autowire search by type.
+@Qualifier("laptop")  if qualifer is also used Searching by name.
+------
+--@Primary // Specifies if there is Confusion between more classes Use This Class.
+
+2.Spring MVC(alrternative to servlet and JSP)
+-Easy to work with.
+-Provides flexiblity.
+-Seperation of modules.
+
+--Controller 
+Login
+Logout
+Add
+
+Client  ---request -->  web.xml(for which req to call for which controller)
+-Each controller acts as servlet
+If there are large number of controller it is very difficult to manage controller.
+
+--Spring MVC provide multi-action front-controller to handel you own created controller.
+for all the request you have to send the request to Dispatch Controller.
+-How would Dispatch controller know which controller to call.It needs a configration file in that file you have to mention which request to call which controller.
+-Spring MVC provide an annotaion Called @Controller you only have to provide configration file.
+-You only have to mention which package you are working with.
+-Controller do some processing and then it will return you the name of the page and Data .
+-Which page , Data goes to dispatch servlet it will call that view , view will fetch data from controller and give a page to client.
 
 
+Client  ---request -->  web.xml ->m er(DispatcheServlet)check config -> Controllers(user Created)
+Advantages:
+If you use some different view technology like theam-leaf you have to only change configration file.
+So view technology and controlles are independent of each other.
 
- 
+3.Web App Using Spring Boot.
+Dispatch servlet send request.
+When you will get request auto-conroller will decide  for whom is sent.
+you dont have external server you get embeded tomcat server.
+By default the all the jsp are kept in src/main/webapp/   default path if you want to change the path you have to change the config.
+
+------------------------------------------------------------------------
+@Controller			//This represent this class is the controller.
+public class HomeController {
+
+	@RequestMapping("home")  //this can be accessed by localhost/8080/home
+	@ResponseBody      Dont use           //This represnt what ever return is the Data.
+	public String home()
+	{
+		System.out.println("Hii");
+		return "home.jsp";
+	}
+}
+
+------------------------------------------------------------------------
+//Adding dependency to handel Jsp  i.e Tomcat Jasper. the version should be same as tomcat in maven dependencies
+<!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-jasper -->
+<dependency>
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-jasper</artifactId>
+    <version>9.0.36</version>
+</dependency>
+
+3.Web App Using Spring Boot-Application.properties
+-change the location of page in  main/webpages/pages/ and remove the jsp
+in Application.properties use (prefix= path) of the page   and (Suffix= type of file) 
+-----------
+server.port=3000
+spring.mvc.view.prefix=/pages/
+spring.mvc.view.suffix=.jsp
+-----------
+
+3.Web App Using Spring Boot-Accepting Client Data
+
+-Using http servlet request object
+-------------
+	@RequestMapping("home")
+	public String home(HttpServletRequest req)
+	{
+		String name= req.getParameter("name");
+		System.out.println("Hii"+name);
+		return "home.jsp";
+	}
+--------------
+How will you send data from here to home.jsp
+**//we can use request Dispatcher: receives request from client sends them to any resource(Html,JSP file) , res.send()
+both two servlet or one servlet and  one jsp share same request object. 
+Spring is using request Dispatcher
+2options
+req.setAttribute()
+creating Http session
+session.setAttribute()
+
+
+we can use it in Jsp in two ways write Java Code inside or Use JSTL or Expesiion Language.
+
+4.Web App Using Spring Boot-Model And View.
+Skip all the extra stuff.
+// we can 
+-----
+	@RequestMapping("home")
+	public String home(String name, HttpSession session)
+	{
+		System.out.println("Hii"+name);
+		//req.setAttribute(name,name);
+		
+		session.setAttribute("name",name);
+		return "home.jsp";
+	}
+-----
+
+If name used in Url and function parameter is not same than we will use annotation
+
+public String home( @RequestParam("name") String myName, HttpSession session)
+
+Model And View:
+------ 
+@Controller
+public class HomeController {
+
+	@RequestMapping("home")
+	public ModelAndView home(String name, HttpSession session)
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("name",name);
+		mv.setViewName("home.jsp");
+		return mv;
+	}
+}
+------
+4.Web App Using Spring Boot-Model And Object.
+-accepting values as objects and Displaying It.
+-what if you are using rest services , what if you want to send data in Json format.
+
+In JSP page           Welcome  ${obj.aid} ,${obj.aname} , ${obj.alang}
+URL: http://localhost:3000/home?aid=101&aname=Tanishq&alang=Python
+In controller:
+@RequestMapping("home")
+	public ModelAndView home(Alien alien)
+	{
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("obj",alien);
+		mv.setViewName("home.jsp");
+		return mv;
+	}
+
+5.Spring Boot JPA MVC H2 Example(New Project)
+Adding Dependencies(springweb,JPA,H2)
+-Add data in Database and Fetch Some thing.
+
+
+<form action="addAlien">
+<input type="text" name="aid"><br>
+<input type="text" name="aname"><br>
+<input type="submit"><br>
+
+</form>
+
+---
+@Controller
+public class AlienController {
+	
+	@RequestMapping("/home/")
+	public String home()
+	{
+		return "home.jsp";
+	}
+}
+
+For adding Jpa in appliction.properties
+Mentioning @Entity @Id 
+Mentioning Entity on top of Alien and Id on top of Attributes. it will automatically create table.
+
+-----    application.prop
+server.port=3000
+ spring.h2.console.enabled=true
+ spring.datasource.platform=h2
+ spring.datasource.url=jdbc:h2:mem:tanishq
+-----
+Concept of creating the Interface and extending the Curd Repository
+Extend your interface with another interface called Curd Repository
+
+
+-Service Layer(Also have)
+Storing and Fetching data using JPA.
+
+5.b Spring Boot JPA MVC H2 Example(New Project)-Query Methods.
+
+--findById : will give you alien by Id
+--What if you need to find by technology. findByTech()  JPA implement method by default.
+  
+//tech is class property
+List<Alien> findByTech(String tech)  //Just declare in Interface it will automatically Implement.
+
+Follow Protocols :findBy or getBy and it should end with the name of the Property
+
+--findAll return Iterable than you can Filter > or < than
+if you are not returning a view name you are returning a data you Inform Dispatch Servlet by:
+@ResponseBody
+
+@RequestMapping("/aliens")
+@ResponseBody
+public String getAliens()
+{
+	return repo.findAll().toString();
+}

@@ -1,3 +1,134 @@
+admin@1123
+
+Spring
+- very popular framework for building Java Applications.
+- Intially a simpler and lightweight alternative to J2EE.
+- provide larger number of helper classes which makes development easier.
+
+Why Spring?
+--J2E
+-EJB(Enterprise java beans) are very complex and works very slow.
+-Spring is Simplified Java Enterprise Development.
+-It initially contains servlets and JSPs.
+
+What to lean 
+-spring
+-Java EE.
+ans: Both lot of skills are interchangable.  once you learn how to implement MVC in one framework implemting in other framework is easier  
+
+
+Update on Spring5 (2017)
+-minimum req is Java 8.
+-Depricated legacy integration for Tiles,velocity,Portlet,etc.
+-Upgraded Spring MVC 
+-Added programming frame work : spring web flux.
+-Some spring 5 Specific feature will not work on Spring4. i.e Spring5 webflux.
+
+--------------------------------------------------------------------------------------------
+www.spring.io //official website.
+
+Goals of Springs
+-light weight devlopmment with java POJOS (plain old Java objects).
+-Dependency injection to promote loose coupling.
+-Declarative programming with AOP.(Add application wide services to your application. Transaction)
+-Minimum boilerpalte Java Code(Helper Classes)
+
+Spring Core FrameWork.
+Beans:
+core:Factory for creating beans,Manage dependecies. 
+Spel  : spring expression language.
+Context:
+
+AOP:Aspectv oriented programming login ,security,transaction.Add config to apply service.
+
+DataAcess Section:
+-JDBC Helper class Reduce your JDBC code by 50%.
+-ORM : object relational mapping. Integration with JPA and Hibernate.
+-Transcation: Transcaction manager   methods are avaliable.
+-OXM
+-JMS :Java message service..... provides helper class 
+
+weblayer
+Servlet,websocket,web,portlet.
+
+Infrastructure
+-instrumentation(agents to monitor)
+
+test layer
+-Unit
+-Integration
+-Mock.
+
+--------------------------------------------------------------------------------------------
+Spring Projects.
+-Additional Spring modules built-on the top of the core Spring Framework.
+-Only use what u need.
+-Spring Cloud,Spring Data,Spring Batch , Spring Security,Spring for Android,spring web services,spring LDPA
+-Spring Boot,spring Social.
+
+Setting up your Development environment
+-JDK Installed
+Java App server (Tomcat server),   Java IDE
+
+Connecting Eclipse and Tomcat.
+Benifits
+-Start Tomcat from Eclipse.
+-Easily deploy applications to Tomcat.
+
+- Download Spring Jar files.
+
+To Do List
+1.Create Eclipse project.
+2.Download Spring Jar Files
+3. Add Jar files to Eclipse Project...Build path.
+
+Maven: End of course'
+https://repo.spring.io/release/org/springframework/spring/5.2.7.RELEASE/
+right click on project -> buld class path ->  add Jara -> add all jars copppied in lib folder
+--------------------------------------------------------------------------------------------
+
+********************************* Spring*******************************
+
+1.Spring Inversion of Control(IOC)
+
+-creation and mamagement of Object.
+-Outsource to an object factory.
+-  my App  ------ Give me Daily Work out-----> Baseball coach
+	   <-----------------------------------
+
+-Project is configrable and should be able to work with any type of coach.
+code Demo
+-MyApp.java : main method.
+-BaseballCoach.java
+-Coach.java : interface after v vrefactoring
+-TrackCoach.java
+//hardcoded and not configure using Object Factory for configration.
+
+give me the object based on configrable file, so the app is configrable.
+---Spring Container
+--Primary Functions
+-create and manage object(Inversion of control)
+-Inject object dependency (Dependency Injection)
+
+3ways of configration
+-XML
+-Java Annotations(morder).
+-Java Source Code.
+
+Spring Development process.
+1.Configure your Spring Beans
+2.Create a spring Container(Application Context).
+3.Retrive Beans from Spring Container.
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------Spring Frame Work by Navvin----------------------------------------------------
 Add Dependencies in POM file using MavenRepository.com 
 ****************Dependency Injection*****************************
 
